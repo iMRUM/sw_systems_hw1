@@ -1,3 +1,8 @@
-//
-// Created by rodki on 18/01/2024.
-//
+#include <stdio.h>
+#include "NumClass.h"
+int main(){
+    int x;
+    x = isPrime(80);
+    printf("is %d", x);
+    return 0;
+}
