@@ -7,8 +7,10 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	gcc -c advancedClassificationLoop.c
 basicClassification.o: basicClassification.c NumClass.h
 	gcc -c advancedClassificationLoop.c
+main.o: main.c NumClass.h
+	gcc -c main.c
 main:
-	gcc advancedClassificationLoop.o advancedClassificationLoop.o basicClassification.o
+	gcc advancedClassificationLoop.o advancedClassificationLoop.o basicClassification.o main.o
 .PHONY: clean
 clean:
 	rm -f *.o
