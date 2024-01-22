@@ -31,15 +31,14 @@ recursived:
 
 mains: recursives
 	$(CC) -c main.c -o mains.o
-	$(CC) -o mains mains.o -L -l_libclassrec
+	$(CC) -o mains mains.o -L. libclassrec.a
 
 maindloop: loopd
-	$(CC) -c main.c -o maindloop.o -fPIC
-	$(CC) -o maindloop maindloop.o -L -l_libclassloops
-
+	$(CC) -c main.c -o maindloop.o -fPIC -lavcodec
+	$(CC) -o maindloop maindloop.o -L. -lclassloops
 maindrec: recursived
 	$(CC) -c main.c -o maindrec.o -fPIC
-	$(CC) -o maindrec maindrec.o -L -l_libclassrec
+	$(CC) -o maindrec maindrec.o -L. -lclassrec
 
 
 .PHONY: all
