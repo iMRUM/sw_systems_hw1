@@ -43,8 +43,8 @@ maindrec: recursived
 
 
 .PHONY: all
-all: %.o
-	
+all: $(OBJECTS)
+	$(CC) $(CFLAGS) $?
 
 ## Rule to build object files
 %.o: %.c
