@@ -33,7 +33,9 @@ mains: recursives
 	$(CC) -c main.c -o mains.o
 	$(CC) -o mains mains.o -L -l_libclassrec
 
-
+maindloop:
+	$(CC) -c main.c -o maindloop.o -fPIC
+	$(CC) -o maindloop maindloop.o -L -l_libclassloops
 
 
 #main.o: main.c NumClass.h
