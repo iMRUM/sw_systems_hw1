@@ -42,7 +42,10 @@ maindrec: recursived
 	$(CC) -o maindrec maindrec.o -L -l_libclassrec
 
 
+.PHONY: all
+all: %.o
+	
 
 ## Rule to build object files
-#%.o: %.c
-#	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
