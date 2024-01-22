@@ -33,20 +33,16 @@ mains: recursives
 	$(CC) -c main.c -o mains.o
 	$(CC) -o mains mains.o -L -l_libclassrec
 
-maindloop:
+maindloop: loopd
 	$(CC) -c main.c -o maindloop.o -fPIC
 	$(CC) -o maindloop maindloop.o -L -l_libclassloops
 
-
-#main.o: main.c NumClass.h
-#	gcc -c main.c
-#main:
-#	gcc advancedClassificationLoop.o advancedClassificationLoop.o basicClassification.o main.o
+maindrec: recursived
+	$(CC) -c main.c -o maindrec.o -fPIC
+	$(CC) -o maindrec maindrec.o -L -l_libclassrec
 
 
-#.PHONY: all
-#all:$(OBJECTS)
-#
+
 ## Rule to build object files
 #%.o: %.c
 #	$(CC) $(CFLAGS) -c $< -o $@
