@@ -1,6 +1,5 @@
 CC = gcc
 CFLAGS = -c -Wall
-LDFLAGS = -L. -lclassrec
 OBJECTS = advancedClassificationLoop.o advancedClassificationRecursion.o basicClassification.o
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
 	$(CC) $(CFLAGS) advancedClassificationLoop.c
@@ -13,7 +12,7 @@ clean:
 	rm -f *.o
 	rm -f *.so
 	rm -f *.a
-	rm -f maindloop maindrec
+
 .PHONY: loops
 loops: advancedClassificationLoop.o basicClassification.o
 	ar rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
@@ -33,15 +32,15 @@ recursived:
 mains: recursives mains
 	$(CC) -c main.c -o mains.o
 	$(CC) -o mains mains.o -L. -lclassrec
-maindloop: loopd
+maindloop: loopd maindloop
 	$(CC) -c main.c -o maindloop.o
-	$(CC) -o maindloop maindloop.o -L. -llibclassloops.so
-maindrec: recursived
+	$(CC) -o maindloop maindloop.o -L. -lclassloops
+maindrec: recursived maindrec
 	$(CC) -c main.c -o maindrec.o
-	$(CC) -o maindrec maindrec.o -L. -llibclassrec.so
+	$(CC) -o maindrec maindrec.o -L. -lclassrec
+
 
 .PHONY: all
 all: $(OBJECTS) mains maindloop maindrec
 	$(CC) $(CFLAGS) $?
-
 
