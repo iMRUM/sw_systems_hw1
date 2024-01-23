@@ -43,6 +43,6 @@ maindrec: recursived
 
 
 .PHONY: all
-all: $(OBJECTS)
+all: $(OBJECTS) mains maindloop maindrec
 	$(CC) $(CFLAGS) $?
 
