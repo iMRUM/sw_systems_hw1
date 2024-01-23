@@ -1,4 +1,4 @@
- #include "NumClass.h"
+#include "NumClass.h"
 #include <stdio.h>
 int main(){
   int number1;
@@ -12,18 +12,26 @@ int main(){
  max=number2; min=number1;
   }
 for(int i=min+1; i<max; i++){
-    printf("%d",isPrime(i));
+	if(isPrime(i)){
+		printf("%d",i);
+	}
 }
 printf("\n");
 for(int i=min+1; i<max; i++){
-    printf("%d",isArmstrong(i));
+    if(isArmstrong(i)){
+		printf("%d",i);
+	}
 }
 printf("\n");
 for(int i=min+1; i<max; i++){
- printf("%d",isStrong(i));
+ if(isStrong(i)){
+		printf("%d",i);
+	}
 }
 printf("\n");
 for(int i=min+1; i<max; i++){
- printf("%d",isPalindrome(i));
+ if(isPalindrome(i)){
+		printf("%d",i);
+	}
 } 
 }
