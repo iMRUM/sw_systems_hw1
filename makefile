@@ -33,7 +33,7 @@ recursived:
 
 mains: recursives
 	$(CC) -c main.c -o mains.o
-	$(CC) -o mains mains.o -L. libclassrec.a
+	$(CC) -o mains mains.o -L. -lclassrec
 maindloop: loopd
 	$(CC) -c main.c -o maindloop.o -fPIC -lavcodec
 	$(CC) -o maindloop maindloop.o -L. -lclassloops
