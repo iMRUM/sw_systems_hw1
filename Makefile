@@ -25,9 +25,11 @@ recursives: $(OBJECTREC)
 	ar rcs libclassrec.a $(OBJECTREC)
 #Dynamic librarys:
 #loopd library:
+.PHONY: loopd
 loopd:	$(OBJECTLOOP) 
 	$(CC) -shared -o libclassloops.so $(OBJECTLOOP)
 #Recursive library:
+.PHONY: recursived
 recursived: $(OBJECTREC) 
 	$(CC) -shared -o libclassrec.so $(OBJECTREC) 
 #Make mains:
