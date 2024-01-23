@@ -41,8 +41,10 @@ maindrec: recursived maindrec
 	$(CC) -c main.c -o maindrec.o
 	$(CC) -o maindrec maindrec.o -L. -lclassrec
 
-
 .PHONY: all
 all: $(OBJECTS) mains maindloop maindrec
-	$(CC) $(CFLAGS) $?
+	$(CC) -o myprogram mains.o -L. -lclassrec
+	$(CC) -o myprogram_loop mains.o -L. -lclassloops
+	$(CC) -o myprogram_rec mains.o -L. -lclassrec
+
 
