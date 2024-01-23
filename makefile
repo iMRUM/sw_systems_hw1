@@ -36,10 +36,10 @@ mains: recursives mains
 	$(CC) -o mains mains.o -L. -lclassrec
 maindloop: loopd maindloop
 	$(CC) -c main.c -o maindloop.o
-	$(CC) -o maindloop maindloop.o -L. -lclassloops
+	$(CC) -o maindloop maindloop.o -L. libclassloops.so
 maindrec: recursived maindrec
 	$(CC) -c main.c -o maindrec.o
-	$(CC) -o maindrec maindrec.o -L. -lclassrec
+	$(CC) -o maindrec maindrec.o -L. libclassrec.so
 
 .PHONY: all
 all: $(OBJECTS) mains maindloop maindrec
