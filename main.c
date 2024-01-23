@@ -20,7 +20,7 @@ int main() {
             printf(" %d", i);
         }
     }
-    printf("\nThe Palindrome numbers are:");
+    printf("\nThe Palindromes are:");
     for (int i = min; i <= max; i++) {
         if (isPalindrome(i)) {
             printf(" %d", i);
