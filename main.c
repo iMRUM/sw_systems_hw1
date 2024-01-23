@@ -1,4 +1,4 @@
-#include "NumClass.h"
+ #include "NumClass.h"
 #include <stdio.h>
 int main(){
   int number1;
@@ -7,11 +7,9 @@ int main(){
   int min;
   scanf("%d %d" ,&number1,&number2);
   if(number1>=number2){
-  	max=number1; 
-  	min=number2;
+  max=number1; min=number2;
   }else{
-  	max=number2; 
-  	min=number1;
+ max=number2; min=number1;
   }
 for(int i=min+1; i<max; i++){
     printf("%d",isPrime(i));
@@ -27,6 +25,5 @@ for(int i=min+1; i<max; i++){
 printf("\n");
 for(int i=min+1; i<max; i++){
  printf("%d",isPalindrome(i));
-}
-return 0; 
+} 
 }
