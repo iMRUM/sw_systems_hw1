@@ -18,5 +18,5 @@ int sub=1;
     return isArmstrongHelp(a/10,digit,compare+sub);
 }
 int isPalindrome(int a){
-   return a==Flip(a);
+   return(a==Flip(a));
 }
