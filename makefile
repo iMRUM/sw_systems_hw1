@@ -7,6 +7,10 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	$(CC) $(CFLAGS) advancedClassificationRecursion.c
 basicClassification.o: basicClassification.c NumClass.h
 	$(CC) $(CFLAGS) basicClassification.c
+libclassloops.a: advancedClassificationLoop.o basicClassification.o
+	ar rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
+libclassrec.so:
+	$(CC) advancedClassificationRecursion.o basicClassification.o -shared -o libclassrec.so
 .PHONY: clean
 clean:
 	rm -f *.o
@@ -14,8 +18,7 @@ clean:
 	rm -f *.a
 
 .PHONY: loops
-loops: advancedClassificationLoop.o basicClassification.o
-	ar rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
+loops: libclassloops.a
 
 .PHONY: loopd
 loopd:
@@ -26,8 +29,7 @@ recursives: advancedClassificationRecursion.o basicClassification.o
 	ar rcs libclassrec.a advancedClassificationRecursion.o basicClassification.o
 
 .PHONY: recursived
-recursived:
-	$(CC) advancedClassificationRecursion.o basicClassification.o -shared -o libclassrec.so
+recursived: libclassrec.so
 
 mains: recursives mains
 	$(CC) -c main.c -o mains.o
