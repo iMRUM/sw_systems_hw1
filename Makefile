@@ -26,11 +26,13 @@ recursives: $(OBJECTREC)
 #Dynamic librarys:
 #loopd library:
 .PHONY: loopd
-loopd:	$(OBJECTLOOP) 
+loopd:	$(OBJECTLOOP)
+	export LD_LIBRARY_PATH=/home/shoam/Desktop/check/sw_systems_hw1 
 	$(CC) -shared -o libclassloops.so $(OBJECTLOOP)
 #Recursive library:
 .PHONY: recursived
-recursived: $(OBJECTREC) 
+recursived: $(OBJECTREC)
+	export LD_LIBRARY_PATH=/home/shoam/Desktop/check/sw_systems_hw1
 	$(CC) -shared -o libclassrec.so $(OBJECTREC) 
 #Make mains:
 mains:recursives 
