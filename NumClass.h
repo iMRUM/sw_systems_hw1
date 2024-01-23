@@ -4,7 +4,6 @@
 #define false 0
 #define true 1
 int Flip(int a);
-double sqrt(double a);
 int isArmstrong(int a);
 int isArmstrongHelp(int a,int digit,int compare);
 int isPalindrome(int a);

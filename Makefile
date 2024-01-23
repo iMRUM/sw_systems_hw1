@@ -15,33 +15,43 @@ OBJECTREC=basicClassification.o advancedClassificationRecursion.o
 OBJ: $(SRC) $(Header)
 	$(CC)$(CFLAGS)	$(SRC) 
 OBJR: $(SRCR) $(Header)
-	$(CC)$(CFLAGS) $(SRCR) 
+	$(CC)$(CFLAGS) $(SRCR)
+	basicClassification.o: basicClassification.c $(Header)
+	$(CC) $(CFLAGS) -c basicClassification.c
+advancedClassificationLoop.o: advancedClassificationLoop.c $(Header)
+	$(CC) $(CFLAGS) -c advancedClassificationLoop.c
+advancedClassificationRecursion.o: advancedClassificationRecursion.c $(Header)
+	$(CC) $(CFLAGS) -c advancedClassificationRecursion.c 
 #Static librarys:
 #loops library:
  loops: $(OBJECTLOOP)
-	ar rcs libclassloops.a $(OBJECTLOOP)
+	ar -rcs libclassloops.a $(OBJECTLOOP)
 #Recursive library:
 recursives: $(OBJECTREC)
-	ar rcs libclassrec.a $(OBJECTREC)
+	ar -rcs libclassrec.a $(OBJECTREC)
 #Dynamic librarys:
 #loopd library:
 .PHONY: loopd
 loopd:	$(OBJECTLOOP) 
-	$(CC) -shared -o libclassloops.so $(OBJECTLOOP)
+	$(CC) $(OBJECTLOOP) -shared -o libclassloops.so 
 #Recursive library:
-.PHONY: recursived
-recursived: $(OBJECTREC) 
-	$(CC) -shared -o libclassrec.so $(OBJECTREC) 
+recursived: libclassrec.so
+libclassrec.so: $(OBJECTREC) 
+	$(CC) $(OBJECTREC) -shared -o libclassrec.so  
 #Make mains:
-mains:recursives 
-	main.c libclassloops.a
-	$(CC) $(CFLAGS) main.c ./libclassrec.a -o mains
+mains: mains recursives
+	$(CC) -c main.c -o mains.o
+	$(CC) -o mains mains.o -L. -lclassrec 
 #Make maindloop
-maindloop: main.c libclassloops.so
-	$(CC) $(CFLAGS) main.c ./libclassloops.so -o maindloop 
+maindloop: loopd
+	$(CC) -c main.c -o maindloop.o
+	$(CC) -o maindloop maindloop.o -L. ./libclassloops.so
 #make maindrec
-maindrec: main.c libclassrec.so
-	$(CC) $(CFLAGS) main.c ./libclassrec.so -o maindrec
+maindrec: recursived
+	$(CC) -c main.c -o maindrec.o
+	$(CC) -o maindrec maindrec.o -L. ./libclassrec.so
+main.o: main.c $(Header)
+	$(CC) $(CFLAGS) -c main.c
 #make all
 .PHONY: all
 all: mains loopd maindloop maindrec loops recursived recursives
