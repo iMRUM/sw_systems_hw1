@@ -11,27 +11,31 @@ int main(){
   }else{
  max=number2; min=number1;
   }
-for(int i=min+1; i<max; i++){
-	if(isPrime(i)){
-		printf("%d",i);
-	}
-}
-printf("\n");
+printf("The Armstrong numbers are: ");
 for(int i=min+1; i<max; i++){
     if(isArmstrong(i)){
-		printf("%d",i);
+		printf("%d ",i);
 	}
 }
 printf("\n");
+printf("The Prime numbers are: ");
+for(int i=min+1; i<max; i++){
+	if(isPrime(i)){
+		printf("%d ",i);
+	}
+}
+printf("\n");
+printf("The Strong numbers are: ");
 for(int i=min+1; i<max; i++){
  if(isStrong(i)){
-		printf("%d",i);
+		printf("%d ",i);
 	}
 }
 printf("\n");
+printf("The Palindrome numbers are: ");
 for(int i=min+1; i<max; i++){
  if(isPalindrome(i)){
-		printf("%d",i);
+		printf("%d ",i);
 	}
 } 
 }

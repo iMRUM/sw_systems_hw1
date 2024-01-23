@@ -10,6 +10,8 @@ basicClassification.o: basicClassification.c NumClass.h
 .PHONY: clean
 clean:
 	rm -f *.o
+	rm -f *.so
+	rm -f *.a
 
 .PHONY: loops
 loops: advancedClassificationLoop.o basicClassification.o
