@@ -26,7 +26,7 @@ for(int i=min+1; i<max; i++){
 }
 printf("\n");
 for(int i=min+1; i<max; i++){
- printf("%d",isPalindrome);
+ printf("%d",isPalindrome(i));
 }
 return 0; 
 }
