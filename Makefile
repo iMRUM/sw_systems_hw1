@@ -26,26 +26,22 @@ recursives: $(OBJECTREC)
 #Dynamic librarys:
 #loopd library:
 .PHONY: loopd
-loopd:	$(OBJECTLOOP)
-	export LD_LIBRARY_PATH=/home/shoam/Desktop/check/sw_systems_hw1 
+loopd:	$(OBJECTLOOP) 
 	$(CC) -shared -o libclassloops.so $(OBJECTLOOP)
 #Recursive library:
 .PHONY: recursived
-recursived: $(OBJECTREC)
-	export LD_LIBRARY_PATH=/home/shoam/Desktop/check/sw_systems_hw1
+recursived: $(OBJECTREC) 
 	$(CC) -shared -o libclassrec.so $(OBJECTREC) 
 #Make mains:
 mains:recursives 
-	$(CC) -c main.c -o mains.o -fPIC -lavcodec
-	$(CC) -o mains mains.o -L. -lclassrec
+	main.c libclassloops.a
+	$(CC) $(CFLAGS) main.c ./libclassrec.a -o mains
 #Make maindloop
-maindloop: loopd
-	$(CC) -c main.c -o maindloop.o -fPIC -lavcodec
-	$(CC) -o maindloop maindloop.o -L. -lclassloops 
+maindloop: main.c libclassloops.so
+	$(CC) $(CFLAGS) main.c ./libclassloops.so -o maindloop 
 #make maindrec
-maindrec: recursived
-	$(CC) -c main.c -o maindrec.o -fPIC -lavcodec
-	$(CC) -o maindrec maindrec.o -L. -lclassrec
+maindrec: main.c libclassrec.so
+	$(CC) $(CFLAGS) main.c ./libclassrec.so -o maindrec
 #make all
 .PHONY: all
 all: mains loopd maindloop maindrec loops recursived recursives
