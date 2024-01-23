@@ -32,8 +32,8 @@ recursived:
 	$(CC) advancedClassificationRecursion.o basicClassification.o -shared -o libclassrec.so
 
 mains: recursives
-	$(CC) -c main.c ./libclassrec.a -o mains
-
+	$(CC) -c main.c -o mains.o
+	$(CC) -o mains mains.o -L. libclassrec.a
 maindloop: loopd
 	$(CC) -c main.c -o maindloop.o -fPIC -lavcodec
 	$(CC) -o maindloop maindloop.o -L. -lclassloops
