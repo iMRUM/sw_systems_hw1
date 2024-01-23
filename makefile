@@ -31,13 +31,13 @@ recursived:
 	$(CC) -c advancedClassificationRecursion.c basicClassification.c -fPIC
 	$(CC) advancedClassificationRecursion.o basicClassification.o -shared -o libclassrec.so
 
-mains: recursives
+mains: recursives mains
 	$(CC) -c main.c -o mains.o
 	$(CC) -o mains mains.o -L. -lclassrec
-maindloop: loopd
+maindloop: loopd maindloop
 	$(CC) -c main.c -o maindloop.o -fPIC -lavcodec
 	$(CC) -o maindloop maindloop.o -L. -lclassloops
-maindrec: recursived
+maindrec: recursived maindrec
 	$(CC) -c main.c -o maindrec.o -fPIC
 	$(CC) -o maindrec maindrec.o -L. -lclassrec
 
