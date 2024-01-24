@@ -38,5 +38,5 @@ for(int i=min; i<max; i++){
  printf(" %d",i);
     }
 }
- 
+printf("\n");
 }
