@@ -1,60 +1,77 @@
 # Makefile for Ex1
 # Compiler
 CC = gcc
+
 #Warrnings
-CFLAGS= -c -Wall
+CFLAGS= -g -Wall
+
 #Source files
 SRC= basicClassification.c advancedClassificationLoop.c
 SRCR=  basicClassification.c advancedClassificationRecursion.c
+
 #Header file
 Header=NumClass.h
+
 #OBJECT REF:
 OBJECTLOOP=basicClassification.o advancedClassificationLoop.o
 OBJECTREC=basicClassification.o advancedClassificationRecursion.o
+
 #OBJECTS Compile:
-OBJ: $(SRC) $(Header)
-	$(CC)$(CFLAGS)	$(SRC) 
-OBJR: $(SRCR) $(Header)
-	$(CC)$(CFLAGS) $(SRCR)
-	basicClassification.o: basicClassification.c $(Header)
+basicClassification.o: basicClassification.c $(Header)
 	$(CC) $(CFLAGS) -c basicClassification.c
 advancedClassificationLoop.o: advancedClassificationLoop.c $(Header)
 	$(CC) $(CFLAGS) -c advancedClassificationLoop.c
 advancedClassificationRecursion.o: advancedClassificationRecursion.c $(Header)
 	$(CC) $(CFLAGS) -c advancedClassificationRecursion.c 
-#Static librarys:
-#loops library:
- loops: $(OBJECTLOOP)
-	ar -rcs libclassloops.a $(OBJECTLOOP)
-#Recursive library:
-recursives: $(OBJECTREC)
-	ar -rcs libclassrec.a $(OBJECTREC)
-#Dynamic librarys:
-#loopd library:
-.PHONY: loopd
-loopd:	$(OBJECTLOOP) 
-	$(CC) $(OBJECTLOOP) -shared -o libclassloops.so 
-#Recursive library:
-recursived: libclassrec.so
-libclassrec.so: $(OBJECTREC) 
-	$(CC) $(OBJECTREC) -shared -o libclassrec.so  
-#Make mains:
-mains: mains recursives
-	$(CC) -c main.c -o mains.o
-	$(CC) -o mains mains.o -L. -lclassrec 
-#Make maindloop
-maindloop: loopd
-	$(CC) -c main.c -o maindloop.o
-	$(CC) -o maindloop maindloop.o -L. ./libclassloops.so
-#make maindrec
-maindrec: recursived
-	$(CC) -c main.c -o maindrec.o
-	$(CC) -o maindrec maindrec.o -L. ./libclassrec.so
+
+#Main creating 
 main.o: main.c $(Header)
 	$(CC) $(CFLAGS) -c main.c
+
+#Static librarys:
+#loops library:
+#Create the loop library:
+ loops: libclassloops.a
+ #Create the recursive library with OBJECTLOOP
+ libclassloops.a: $(OBJECTLOOP)
+	ar rcs libclassloops.a $(OBJECTLOOP)
+
+#library:
+#Create the recursive library:
+recursives: libclassrec.a
+#Create the library with OBJECTREC
+libclassrec.a: $(OBJECTREC)
+	 ar rcs libclassrec.a $(OBJECTREC)
+
+#Dynamic librarys:
+#Create the dynamic loop library
+loopd:libclassloops.so
+#Create the dynamic recursive library using OBJECTLOOP
+libclassloops.so: $(OBJECTLOOP)
+	$(CC) -shared -fpic -o libclassloops.so $(OBJECTLOOP) 
+
+#Create the recursive dynamic library
+recursived:libclassrec.so
+#Create the dynamic library using OBJECTREC
+libclassrec.so: $(OBJECTREC) 
+	$(CC) -shared -fpic -o libclassrec.so  $(OBJECTREC)
+
+#Make mains:
+mains: main.o libclassrec.a
+	$(CC) $(CFLAGS) main.o ./libclassrec.a -o mains
+
+#Make maindloop
+maindloop: loopd
+		$(CC) $(CFLAGS) main.o ./libclassloops.so -o maindloop
+
+#make maindrec
+maindrec: recursived
+	$(CC) $(CFLAGS) main.o ./libclassrec.so -o maindrec
+
 #make all
 .PHONY: all
 all: mains loopd maindloop maindrec loops recursived recursives
+
 #make clean
 .PHONY: clean
 clean:
