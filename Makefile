@@ -61,11 +61,11 @@ mains: main.o libclassrec.a
 	$(CC) $(CFLAGS) main.o ./libclassrec.a -o mains
 
 #Make maindloop
-maindloop: loopd
+maindloop: libclassloops.so
 		$(CC) $(CFLAGS) main.o ./libclassloops.so -o maindloop
 
 #make maindrec
-maindrec: recursived
+maindrec: libclassrec.so
 	$(CC) $(CFLAGS) main.o ./libclassrec.so -o maindrec
 
 #make all
