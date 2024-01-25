@@ -1,6 +1,5 @@
 #ifndef NumClass_H
 #define NumClass_H
-
 #define false 0
 #define true 1
 int Flip(int a);

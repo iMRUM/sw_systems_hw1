@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "NumClass.h"
-
+// function that return if a number is palindrome.
 int isPalindrome(int  a){
 int number=a;
 int reverse=0;
@@ -11,6 +11,7 @@ while(a>0){
 }
 return number==reverse;
 }
+// function that return if a number is armstrong.
 int isArmstrong(int a){
   int digits=countdigits(a);
     int compare=a;

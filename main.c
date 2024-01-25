@@ -5,37 +5,39 @@ int main(){
   int number2;
   int max;
   int min;
+
   scanf("%d %d" ,&number1,&number2);
-  if(number1>=number2){
-  max=number1; min=number2;
-  }else{
- max=number2; min=number1;
+    if(number1>=number2){
+      max=number1; min=number2;
+        }else{
+            max=number2; min=number1;
   }
+
    printf("The Armstrong numbers are:");
-for(int i=min; i<max; i++){
-    if(isArmstrong(i)){
-    printf(" %d",i);
+      for(int i=min; i<max; i++){
+          if(isArmstrong(i)){
+                  printf(" %d",i);
     }
 }
 printf("\n");
- printf("The Palindromes are:");
-for(int i=min; i<max; i++){
-    if(isPalindrome(i)){
-      printf(" %d",i);
+printf("The Palindromes are:");
+  for(int i=min; i<max; i++){
+      if(isPalindrome(i)){
+        printf(" %d",i);
     }
 } 
 printf("\n");
-  printf("The Prime numbers are:");
-for(int i=min; i<max; i++){
+printf("The Prime numbers are:");
+  for(int i=min; i<max; i++){
     if(isPrime(i)){
-    printf(" %d",i );
+      printf(" %d",i );
     }
 }
 printf("\n");
-  printf("The Strong numbers are:");
+printf("The Strong numbers are:");
 for(int i=min; i<max; i++){
-    if(isStrong(i)){
- printf(" %d",i);
+  if(isStrong(i)){
+    printf(" %d",i);
     }
 }
 printf("\n");

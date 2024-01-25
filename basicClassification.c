@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "NumClass.h"
-
+// basic function to find if number is a prime a number
 int isPrime(int a) {
     if(a==1){
         return 1;
@@ -13,6 +13,8 @@ int isPrime(int a) {
     }
     return 1;
 }
+
+// function to find if a number is strong number.
 int isStrong(int a){
     int digits=countdigits(a);
     int sum=0;
@@ -27,6 +29,7 @@ int isStrong(int a){
      if(sum==a)return 1;else
     return 0;
 }
+// a function the return the number of digits of the number.
 int countdigits(int a){
     int digits=0;
     if(a==0){ return 0;}
@@ -36,21 +39,12 @@ a=a/10;
  }
     return digits;
 }
+//function to find for every positive x: x!
 int factorial(int a){
     int ans=1;
     for(int i=1; i<=a; i++){
         ans*=i;
     }
     return ans;
-}
-int Flip(int a){
-if (a==0)return 0;
- int c=countdigits(a);
- int sum=1;
- for (int i = 1; i < c; i++)
- {
-    sum*=10;
- }
- return((a%10)*sum)+Flip(a/10);
 }
 
